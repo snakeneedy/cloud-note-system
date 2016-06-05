@@ -5,14 +5,8 @@ from datetime import datetime
 # Create your views here.
 
 def hello_world (request):
-    htmlcode = """<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
-    <p>Hello World! {current_time}</p>
-</body>
-</html>
-    """.format(current_time=datetime.now())
-    return HttpResponse(htmlcode)
+    # render(request, template_name, dictionary)
+    return render(request, 'hello_world.html', {
+        'current_time': datetime.now(),
+    })
 
