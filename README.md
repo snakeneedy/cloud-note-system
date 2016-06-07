@@ -23,4 +23,5 @@ DATABASES = {
 		+ SQLite 3: `django.db.backends.sqlite3`
 		+ PostgreSQL: django.db.backends.postgresql_psycopg2
 	+ NAME: database name
++ Create superuser account: `python manage.py createsuperuser`
 
