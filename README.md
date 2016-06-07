@@ -10,6 +10,11 @@
 	+ Then visit http://127.0.0.1:8000/hello/  
 	  *hello* can be changed by the settings in urlpatterns.
 + Database **<project_name>/settings.py**:
+	+ ENGINE: which engine?
+		+ MySQL: `django.db.backends.mysql`
+		+ SQLite 3: `django.db.backends.sqlite3`
+		+ PostgreSQL: django.db.backends.postgresql_psycopg2
+	+ NAME: database name
 ```py
 DATABASES = {
     'default': {
@@ -18,10 +23,6 @@ DATABASES = {
     }
 }
 ```
-	+ ENGINE: which engine?
-		+ MySQL: `django.db.backends.mysql`
-		+ SQLite 3: `django.db.backends.sqlite3`
-		+ PostgreSQL: django.db.backends.postgresql_psycopg2
-	+ NAME: database name
+
 + Create superuser account: `python manage.py createsuperuser`
 
