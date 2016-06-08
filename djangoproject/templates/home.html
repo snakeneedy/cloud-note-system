@@ -9,7 +9,7 @@
 	<h1>Below is the postList</h1>
 	{% for post in postList %}
 	<h2>{{post.title}}</h2>
-	<p>Created at {{post.created_at}}<br />Modified at {{post.modified_at}}</p>
+	<p>Created at {{post.created_at | date:'Y-m-d H:i:s'}}<br />Modified at {{post.modified_at | date:'Y-m-d H:i:s'}}</p>
 	<div>{{post.content}}</div>
 	{% endfor %}
 	<!-- <p>{{postList}}</p> -->
