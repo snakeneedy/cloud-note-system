@@ -1,0 +1,20 @@
+<!-- djangoproject/templates/hello_world.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>This is my Django home page</title>
+	<style></style>
+</head>
+<body>
+	<h1>Below is the postList</h1>
+	{% for post in postList %}
+	<h2>{{post.title}}</h2>
+	<p>Created at {{post.created_at}}<br />Modified at {{post.modified_at}}</p>
+	<div>{{post.content}}</div>
+	{% endfor %}
+	<!-- <p>{{postList}}</p> -->
+	<hr />
+	<p><em>{{current_time}}</em></p>
+</body>
+</html>
+
