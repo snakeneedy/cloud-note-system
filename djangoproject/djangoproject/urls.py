@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^$', home),
     url(r'^admin/', admin.site.urls),
     url(r'^hello/', hello_world),
-    url(r'^post/(?P<pk_n>\d+)/$', post_detail, name='post_detail'),
+    url(r'^post/(?P<pk>\d+)/$', post_detail, name='post_detail'),
 ]
