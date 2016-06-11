@@ -1,4 +1,4 @@
-"""djangoproject URL Configuration
+"""cns URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/dev/topics/http/urls/
@@ -15,11 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from notes.views import hello_world, home, post_detail
 
 urlpatterns = [
-    url(r'^$', home),
     url(r'^admin/', admin.site.urls),
-    url(r'^hello/', hello_world),
-    url(r'^post/(?P<pk>\d+)/$', post_detail, name='post_detail'),
 ]
