@@ -12,3 +12,9 @@ def note(request):
 def register(request):
     return render(request, 'register.html')
 
+def login(request):
+    if request.method == 'POST':
+        return render(request, 'register.html')
+    else:
+        return render(request, 'login.html')
+

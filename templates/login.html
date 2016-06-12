@@ -1,0 +1,20 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login - Python 雲端筆記</title>
+		<style></style>
+	</head>
+	<body>
+		<h1>Login</h1>
+		<form action="login_check" method="POST">
+			{% csrf_token %}
+			<label for="uid">Interface</label>
+			<input name="uid" type="text" placeholder="帳號" />
+			<input name="pwd" type="text" placeholder="密碼" />
+			<input type="submit" />
+		</form>
+	</body>
+	<script></script>
+</html>
+
