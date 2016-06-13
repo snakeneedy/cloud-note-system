@@ -24,14 +24,23 @@
 					</li>{% endfor %}
 				</ul>
 			</div><div class="rcol">
+				<div>
+					<a href="/note/create/">
+						<input type="button" value="+ Note" />
+					</a>
+					<a href="{{ this_note.text_edit }}">
+						<input type="button" value="Edit this note" />
+					</a>
+					<a href="{{ this_note.text_delete }}">
+						<input type="button" value="Delete!" />
+					</a>
+				</div>
 				<div class="title">
 					<h1>{{ this_note.title }}</h1>
 				</div><div class="content">
 					{{ this_note.content }}
 				</div>
 			</div>
-			<footer>
-			</footer>
 		</div>
 	</body>
 	<script></script>

@@ -12,3 +12,9 @@ class Note(models.Model):
     modified_at = models.DateTimeField(auto_now = True)
     username = models.CharField(max_length = 100)
 
+    def text_edit(self):
+        return str(self.pk) + '/edit/'
+
+    def text_delete(self):
+        return str(self.pk) + '/delete/'
+
