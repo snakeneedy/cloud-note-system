@@ -18,37 +18,20 @@
 		</a>
 		<div class="container">
 			<div class="lcol">
-				<ul>
-					{% for note in note_list %}<li>
-						<a href="{{ note.pk }}">{{ note.title }}</a>
-					</li>{% endfor %}
-				</ul>
+
 			</div><div class="mcol">
-				<div>
-					<a href="/note/create/">
-						<input type="button" value="+ Note" />
-					</a>
-					<a href="{{ this_note.text_edit }}">
-						<input type="button" value="Edit this note" />
-					</a>
-					<a href="{{ this_note.text_delete }}">
-						<input type="button" value="Delete!" />
-					</a>
-				</div>
 				<div class="title">
-					<h1>{{ this_note.title }}</h1>
+					{% for tag in result_list %}<br>
+						<a href="/note/{{ tag.pk }}">{{ tag.title }}</a>
+					</br>{% endfor %}
 				</div><div class="content">
-					<div><pre>{{ this_note.content }}</pre></div>
+					{{ this_note.content }}
 				</div>
 			</div><div class="rcol">
-				<ul>
-					<form action="" method="POST">
-						{% for tag in tag_list %}<li>
-							<a href="/tag/{{ tag }}">{{ tag }}</a>
-						</li>{% endfor %}
-					</form>
-				</ul>
+
 			</div>
+			<footer>
+			</footer>
 		</div>
 	</body>
 	<script></script>

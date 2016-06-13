@@ -13,10 +13,15 @@
 	width: 25%;
 	/* background-color: #58D68D; */
 }
+.mcol {
+	display: block;
+	float: left;
+	width: 60%;
+}
 .rcol {
 	display: block;
 	float: right;
-	width: 75%;
+	width: 15%;
 	/* background-color: #3598DB; */
 }
 

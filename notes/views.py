@@ -25,10 +25,12 @@ def note(request, pk = 1):
         return HttpResponseRedirect('/login/')
     note_list = Note.objects.all().filter(username=request.user.username)
     this_note = Note.objects.get(pk = pk)
+    tag_list = this_note.tags.split(',')
     return render(request, 'note.html', {
             'username': request.user.username,
             'note_list': note_list,
             'this_note': this_note,
+            'tag_list': tag_list,
         })
 
 def note_create(request):
@@ -69,10 +71,6 @@ def note_delete(request, pk):
         return HttpResponseRedirect('/login/')
     Note.objects.get(pk = pk).delete()
     return HttpResponseRedirect('/')
-#    return HttpResponse("""<h1>Note Delete</h1>
-#<h2>"""+pk+"""</h2>
-#<h2>"""+this_note.title+"""</h2>
-#<div>"""+this_note.content+"""</div>""")
 
 def register(request):
     if request.method == 'POST':
@@ -102,3 +100,11 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/login/')
+
+def analyze(request, tag):
+    result_list = []
+    for note in Note.objects.all():
+        if note.tags.find(tag)!=-1:
+            result_list.append(note)
+
+    return render(request, 'tag.html', locals())
