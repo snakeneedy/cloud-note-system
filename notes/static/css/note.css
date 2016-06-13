@@ -1,0 +1,22 @@
+.container {
+	width: 100%;
+}
+.rcol,
+.lcol {
+	min-height: 100px;
+	padding: 0px;
+	margin: 0px;
+}
+.lcol {
+	display: block;
+	float: left;
+	width: 25%;
+	background-color: #58D68D;
+}
+.rcol {
+	display: block;
+	float: right;
+	width: 75%;
+	background-color: #3598DB;
+}
+

@@ -4,6 +4,7 @@ from django.contrib.sessions.models import Session
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from .models import Note
 
 # Create your views here.
 
@@ -13,11 +14,15 @@ def home(request):
     else:
         return HttpResponseRedirect('/login/')
 
-def note(request):
+def note(request, pk = 1):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
+    note_list = Note.objects.all().filter(username=request.user.username)
+    this_note = Note.objects.get(pk = pk)
     return render(request, 'note.html', {
             'username': request.user.username,
+            'note_list': note_list,
+            'this_note': this_note,
         })
 
 def register(request):

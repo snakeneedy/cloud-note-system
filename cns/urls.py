@@ -20,7 +20,7 @@ from notes.views import home, note, register, login, logout
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home),
-    url(r'^note/', note),
+    url(r'^note/(?P<pk>\d+)$', note),
     url(r'^register/', register),
     url(r'^login/', login),
     url(r'^logout/', logout),
