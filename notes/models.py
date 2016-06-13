@@ -6,6 +6,7 @@ import json
 # Create your models here.
 
 class Note(models.Model):
+    username = models.CharField(max_length = 100)
     title = models.CharField(max_length = 100)
     content = models.TextField(blank = True)
     tags = models.CharField(max_length = 200)

@@ -16,7 +16,9 @@ def home(request):
 def note(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
-    return render(request, 'note.html')
+    return render(request, 'note.html', {
+            'username': request.user.username,
+        })
 
 def register(request):
     if request.method == 'POST':

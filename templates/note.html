@@ -1,12 +1,36 @@
 <!-- note.html -->
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
 	<head>
 		<title>Note - Python 雲端筆記</title>
-		<style></style>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+		<style>
+.container {
+	width: 100%;
+}
+.rcol,
+.lcol {
+	min-height: 100px;
+}
+.lcol {
+	display: inline-block;
+	width: 30%;
+	background-color: #58D68D;
+}
+.rcol {
+	display: inline-block;
+	width: 70%;
+	background-color: #3598DB;
+}
+		</style>
 	</head>
 	<body>
 		<h1>Note</h1>
+		<h2>{{ username }}</h2>
+		<div class="container">
+			<div class="lcol"></div><div class="rcol"></div>
+		</div>
 	</body>
 	<script></script>
 </html>
