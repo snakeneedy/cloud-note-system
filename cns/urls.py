@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from notes.views import home, note, note_create, note_edit, note_delete, register, login, logout, analyze
+from notes.views import home, note_empty, note, note_create, note_edit, note_delete, register, login, logout, analyze, error_response
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home),
+    url(r'^note/$', note_empty),
     url(r'^note/(?P<pk>\d+)$', note),
     url(r'^note/(?P<pk>\d+)/edit/$', note_edit),
     url(r'^note/(?P<pk>\d+)/delete/$', note_delete),
@@ -28,4 +29,5 @@ urlpatterns = [
     url(r'^login/', login),
     url(r'^logout/', logout),
     url(r'^tag/(?P<tag>\S+)', analyze),
+    url(r'^error/$', error_response),
 ]

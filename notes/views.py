@@ -20,11 +20,27 @@ def home(request):
     else:
         return HttpResponseRedirect('/login/')
 
-def note(request, pk = 1):
+def note_empty(request):
+    note_list = Note.objects.all().filter(username=request.user.username)
+    if note_list:
+        return HttpResponseRedirect('/note/'+str(note_list[0].pk))
+    else:
+        return HttpResponseRedirect('/note/create/')
+
+def note(request, pk):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
+
     note_list = Note.objects.all().filter(username=request.user.username)
-    this_note = Note.objects.get(pk = pk)
+
+    try:
+        this_note = Note.objects.get(pk = pk)
+    except Note.DoesNotExist:
+        return HttpResponseRedirect('/error/')
+
+    if this_note.username != request.user.username:
+        return HttpResponseRedirect('/error/')
+    
     tag_list = this_note.tags.split(',')
     return render(request, 'note.html', {
             'username': request.user.username,
@@ -108,3 +124,7 @@ def analyze(request, tag):
             result_list.append(note)
 
     return render(request, 'tag.html', locals())
+
+def error_response(request):
+    return render(request, 'error.html')
+
