@@ -1,0 +1,28 @@
+<!-- note_edit.html -->
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+	<head>
+		<title>Edit Note - Python 雲端筆記</title>
+		<!--
+		<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+		-->
+		<link rel="stylesheet" type="text/css" href="{% static 'css/note_create.css' %}">
+	</head>
+	<body>
+		<h1>Edit Note</h1>
+		<div class="container">
+			<form action="" method="POST">
+				<p>Title: <input name="title" type="text" value="{{ this_note.title }}" /></p>
+				<p>Tags: <input name="tags" type="text" placeholder="tagA,tagB,tagC" value="{{ this_note.tags }}" /></p>
+				<p><textarea name="content">{{ this_note.content }}</textarea></p>
+				<input name="username" type="hidden" value="{{ this_note.username }}" />
+				<input type="submit" value="儲存文章" />
+			</form>
+		</div>
+	</body>
+	<script></script>
+</html>
+
+

@@ -48,23 +48,31 @@ def note_create(request):
 def note_edit(request, pk):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
+
     this_note = Note.objects.get(pk = pk)
-    return HttpResponse("""<h1>Note Edit</h1>
-<h2>"""+pk+"""</h2>
-<h2>"""+this_note.title+"""</h2>
-<div>"""+this_note.content+"""</div>""")
-#    return render(request, 'note_edit.html', {
-#            'this_note': this_note,
-#        })
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            this_note.title = request.POST['title']
+            this_note.tags = request.POST['tags']
+            this_note.content = request.POST['content']
+            this_note.save()
+            return HttpResponseRedirect('/note/'+str(this_note.pk))
+
+    this_note = Note.objects.get(pk = pk)
+    return render(request, 'note_edit.html', {
+            'this_note': this_note,
+        })
 
 def note_delete(request, pk):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
-    this_note = Note.objects.get(pk = pk)
-    return HttpResponse("""<h1>Note Delete</h1>
-<h2>"""+pk+"""</h2>
-<h2>"""+this_note.title+"""</h2>
-<div>"""+this_note.content+"""</div>""")
+    Note.objects.get(pk = pk).delete()
+    return HttpResponseRedirect('/')
+#    return HttpResponse("""<h1>Note Delete</h1>
+#<h2>"""+pk+"""</h2>
+#<h2>"""+this_note.title+"""</h2>
+#<div>"""+this_note.content+"""</div>""")
 
 def register(request):
     if request.method == 'POST':
