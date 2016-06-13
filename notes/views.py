@@ -8,9 +8,14 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/note/')
+    else:
+        return HttpResponseRedirect('/login/')
 
 def note(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/login/')
     return render(request, 'note.html')
 
 def register(request):
@@ -32,12 +37,9 @@ def login(request):
     
     user = auth.authenticate(username = username, password = password)
 
-    if user is not None:
-        if user.is_active:
-            auth.login(request, user)
-            return HttpResponseRedirect('/')
-        else:
-            return render(request, 'login.html', {})
+    if user is not None and user.is_active:
+        auth.login(request, user)
+        return HttpResponseRedirect('/')
     else:
         return render(request, 'login.html', {})
 
