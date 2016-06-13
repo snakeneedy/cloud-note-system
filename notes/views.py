@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.sessions.models import Session
@@ -5,6 +6,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from .models import Note
+
+class NoteForm(forms.ModelForm):
+    class Meta:
+        model = Note
+        fields = ['title', 'content', 'tags', 'username']
 
 # Create your views here.
 
@@ -30,10 +36,10 @@ def note_create(request):
         return HttpResponseRedirect('/login/')
 
     if request.method == 'POST':
-        title = request.POST.get('title', '')
-        content = request.POST.get('content', '')
-        tags = request.POST.get('tags', '')
-        username = request.POST.get('username', '')
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            this_note = form.save()
+            return HttpResponseRedirect('/note/'+str(this_note.pk))
 
     return render(request, 'note_create.html', {
             'username': request.user.username,
